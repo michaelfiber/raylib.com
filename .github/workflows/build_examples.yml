@@ -13,6 +13,10 @@ jobs:
           repository: raysan5/raylib
       - name: Install emsdk
         uses: mymindstorm/setup-emsdk@v11
+      - name: Build raylib WASM
+        run: |
+          cd raylib/src
+          make PLATFORM=PLATFORM_WEB -B
       - name: Build Examples
         run: |
           cd raylib/examples
