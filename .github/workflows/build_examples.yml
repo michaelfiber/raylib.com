@@ -1,6 +1,9 @@
 name: Build WASM Examples
 on:
   workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   build:
     name: Build WASM 
@@ -19,13 +22,16 @@ jobs:
         run: |
           cd raylibsrc/src
           make PLATFORM=PLATFORM_WEB -B
-      - name: Build Core Examples
+      - name: Build Shaders Examples
         run: |
           cd raylibsrc/examples
-          make PLATFORM=PLATFORM_WEB core
+          make PLATFORM=PLATFORM_WEB shaders
       - name: Update example tags
         run: ./tools/update-example-tags.sh ./raylibsrc/examples
       - name: Copy files over
         run: cp -r ./raylibsrc/examples/* ./examples/
-      - name: Commit changes
-        run: cat ./examples/core/core_2d_camera_mouse_zoom.html
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: ./raylib.com
+          title: Update Examples
