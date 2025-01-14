@@ -5,14 +5,15 @@ jobs:
   build:
     name: Build WASM 
     runs-on: ubuntu-latest
-    - name: Checkout raylib
-      uses: actions/checkout@v3
-      with:
-        path: raylib
-        repository: raysan5/raylib
-    - name: Install emsdk
-      uses: mymindstorm/setup-emsdk@v11
-    - name: Build Examples
-      run: |
-        cd raylib/examples
-        make PLATFORM=PLATFORM_WEB
+    steps:
+      - name: Checkout raylib
+        uses: actions/checkout@v3
+        with:
+          path: raylib
+          repository: raysan5/raylib
+      - name: Install emsdk
+        uses: mymindstorm/setup-emsdk@v11
+      - name: Build Examples
+        run: |
+          cd raylib/examples
+          make PLATFORM=PLATFORM_WEB
