@@ -30,6 +30,8 @@ jobs:
         run: ./tools/update-example-tags.sh ./raylibsrc/examples
       - name: Copy files over
         run: cp -r ./raylibsrc/examples/* ./examples/
+      - name: Clean up
+        run: rm -rf ./raylibsrc
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
