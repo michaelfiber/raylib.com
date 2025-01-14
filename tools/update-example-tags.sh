@@ -13,6 +13,7 @@ declare -A replacements=(
 
 function update_tags {
     echo "update tags for: $1"
+
     filename=$(basename $1)
     noext="${filename%.*}"
     export title="${noext//_/ }"
@@ -33,7 +34,7 @@ function update_tags {
     done
 }
 
-pushd ../examples
+pushd $1
 
 for i in **/*.html; do
     update_tags "$i"
