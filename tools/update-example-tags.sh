@@ -15,12 +15,12 @@ declare -A replacements=(
     "https://www.raylib.com/common/raylib_logo.png"         "https://raw.githubusercontent.com/raysan5/raylib/master/examples/\$category/\$imgname"
     "https://www.raylib.com/games.html"                     "https://www.raylib.com/examples/\$category/\$filename"
     "raylib web game"                                       "\$title"
-    "https://github.com/raysan5/raylib"                     "https://github.com/raysan5/raylib/blob/master/examples/\$fullpath"
+    "https://github.com/raysan5/raylib"                     "https://github.com/raysan5/raylib/blob/master/examples/\$category/\$noext.c"
 )
 
 function update_tags {
     echo "update tags for: $1"
-    export fullpath="examples/$1"
+    fullpath="examples/$1"
     export filename=$(basename $1)
     export noext="${filename%.*}"
     export title="${noext//_/ }"
