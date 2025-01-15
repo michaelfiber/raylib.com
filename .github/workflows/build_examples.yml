@@ -29,7 +29,7 @@ jobs:
       - name: Update example tags
         run: ./tools/update-example-tags.sh ./raylibsrc/examples
       - name: Copy files over
-        run: cp -r ./raylibsrc/examples/* ./examples/
+        run: find raylibsrc/examples/ -regex '.*\.\(js\|html\|wasm\|data\)$' -exec cp {} examples/ \;
       - name: Clean up
         run: rm -rf ./raylibsrc
       - name: Create Pull Request
