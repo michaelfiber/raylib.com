@@ -25,7 +25,8 @@ jobs:
       - name: Build Shaders Examples
         run: |
           cd raylibsrc/examples
-          make PLATFORM=PLATFORM_WEB shaders
+          make PLATFORM=PLATFORM_WEB shaders/shaders_mesh_instancing
+          make PLATFORM=PLATFORM_WEB core/core_2d_camera_mouse_zoom
       - name: Update example tags
         run: ./tools/update-example-tags.sh ./raylibsrc/examples
       - name: Copy files over
