@@ -10,7 +10,7 @@ shopt -s globstar
 declare -A replacements=(
     "<title>raylib web game</title>"                        "<title>\$title</title>"
     "<meta name=\"title\" content=\"raylib web game\">"     "<meta name=\"title\" content=\"\$title\">"
-    "New raylib web videogame\, developed using raylib videogames library" "raylib [\$category] example - \$title"
+    "New raylib web videogame\, developed using raylib videogames library" "raylib [\$category] example - \$short_title"
     "raylib - example"                                      "raylib - \$title"
     "https://www.raylib.com/common/raylib_logo.png"         "https://raw.githubusercontent.com/raysan5/raylib/master/examples/\$category/\$imgname"
     "https://www.raylib.com/games.html"                     "https://www.raylib.com/examples/\$category/\$filename"
@@ -20,9 +20,10 @@ declare -A replacements=(
 function update_tags {
     echo "update tags for: $1"
     export filename=$(basename $1)
-    noext="${filename%.*}"
+    export noext="${filename%.*}"
     export title="${noext//_/ }"
     export imgname="${noext}.png"
+    export short_title=$(echo $title | sed -e 's/^[a-z]* //g')
     parts=($title)
     export category="${parts[0]}"
 
