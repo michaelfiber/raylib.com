@@ -39,3 +39,5 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           title: Update Examples
+          branch: auto-examples
+          branch-suffix: timestamp
