@@ -41,3 +41,4 @@ jobs:
           title: Update Examples
           branch: auto-examples
           branch-suffix: timestamp
+          commit-message: Automatically generated WASM builds of examples based on [raysan5/raylib]
